@@ -124,3 +124,14 @@ li.completed {
   align-items: center;
   gap: 10px;
 }
+
+.filter-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+.filter-btn {
+  width: 100%;
+}

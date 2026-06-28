@@ -2,6 +2,10 @@ const toDoInput = document.querySelector("#todo-input");
 const addTask = document.querySelector("#add-task-btn");
 const toDoList = document.querySelector("#todo-list");
 
+const all = document.querySelector(".all");
+const pending = document.querySelector(".pending");
+const completed = document.querySelector(".completed");
+
 const taskArray = [];
 
 let myLiEdit = "";
@@ -25,6 +29,7 @@ addTask.addEventListener("click", (e) => {
     taskArray.push(taskOne);
     console.log(taskArray);
     toDoList.innerHTML += `<li class = "listItem" data-id = ${taskOne.id}> <div class="task-test"> ${inputValue} </div> <div> <button class="btn-edit"> Edit </button> </div> <div> <button class="btn-delete"> Delete </button> </div> <div> <input type="checkbox" class="check" </div> </li>`;
+    // allLiItems = document.querySelectorAll("li");
     toDoInput.value = "";
   } else if (editMode === true) {
     let value = taskArray.find((item) => {
@@ -61,3 +66,45 @@ toDoList.addEventListener("click", (e) => {
     editMode = true;
   }
 });
+
+function filteredItems(parameter) {
+  if (parameter === "completed") {
+    let allLiItems = document.querySelectorAll("li");
+    allLiItems.forEach((item) => {
+      let htmlID = item.dataset.id;
+      let filteredObj = taskArray.find((value) => {
+        return value.id === htmlID;
+      });
+      if (filteredObj.done === true) {
+        item.style.display = "grid";
+      }
+      if (filteredObj.done === false) {
+        item.style.display = "none";
+      }
+    });
+  } else if (parameter === "pending") {
+    let allLiItems = document.querySelectorAll("li");
+    allLiItems.forEach((item) => {
+      let htmlID = item.dataset.id;
+      let filteredObj = taskArray.find((value) => {
+        return value.id === htmlID;
+      });
+      if (filteredObj.done === false) {
+        item.style.display = "flex";
+      } else if (filteredObj.done === true) {
+        item.style.display = "none";
+      }
+    });
+  } else if (parameter === "all") {
+    let allLiItems = document.querySelectorAll("li");
+    allLiItems.forEach((item) => {
+      let htmlID = item.dataset.id;
+      let filteredObj = taskArray.find((value) => {
+        return value.id === htmlID;
+      });
+      if (filteredObj.done === true || filteredObj.done === false) {
+        item.style.display = "flex";
+      }
+    });
+  }
+}
