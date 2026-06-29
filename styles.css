@@ -19,7 +19,7 @@ body {
   background-color: #1e1e1e;
   padding: 20px;
   border-radius: 10px;
-  width: 300px;
+  width: 400px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -40,7 +40,7 @@ input[type="text"] {
   padding: 10px;
   background-color: #333333;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   color: #fff;
   outline: none;
 }
@@ -72,7 +72,7 @@ ul {
   margin-bottom: 10px;
   border-radius: 100px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   overflow: auto;
 }
@@ -83,23 +83,24 @@ li.completed {
 }
 
 .btn-delete {
-  background-color: #d32f2f;
+  background-color: #ffffff;
   border: none;
   padding: 5px;
-  color: white;
-  border-radius: 5px;
+  color: rgb(255, 0, 0);
+  border-radius: 2px;
   cursor: pointer;
   width: 100%;
 }
 
 .btn-delete:hover {
   background-color: #b71c1c;
+  color: white;
 }
 .btn-edit {
-  background-color: #d32f2f;
+  background-color: #ffffff;
   border: none;
   padding: 5px;
-  color: white;
+  color: rgb(255, 0, 0);
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
@@ -137,4 +138,62 @@ li.completed {
 }
 .active {
   background-color: #34007c;
+}
+
+.check {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.check::before {
+  content: "✓";
+  color: white;
+  font-size: 14px;
+  display: none;
+}
+
+.check:checked {
+  background-color: #6200ea;
+  border-color: #6200ea;
+}
+
+.check:checked::before {
+  display: block;
+}
+
+.btn-edit,
+.btn-delete {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 18px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.task-test {
+  font-size: 18px;
+  font-family: sans-serif;
+  margin-right: 5px;
+}
+
+#clear {
+  background-color: #ffdd00;
+  color: black;
+  font-weight: bold;
 }

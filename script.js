@@ -1,6 +1,7 @@
 const toDoInput = document.querySelector("#todo-input");
 const addTask = document.querySelector("#add-task-btn");
 const toDoList = document.querySelector("#todo-list");
+const clearLocalStorage = document.querySelector("#clear");
 
 const filterBtn = document.querySelectorAll(".filter-btn");
 
@@ -20,8 +21,7 @@ class Tasks {
 
 loadFromLocal();
 
-addTask.addEventListener("click", (e) => {
-  e.preventDefault();
+function addingTask() {
   inputValue = toDoInput.value.trim();
   if (inputValue === "") return;
   if (editMode === false) {
@@ -32,7 +32,7 @@ addTask.addEventListener("click", (e) => {
     let myLi = document.createElement("li");
     myLi.className = "listItem";
     myLi.dataset.id = `${taskOne.id}`;
-    myLi.innerHTML = `<div class="task-test"> ${inputValue} </div> <div> <button class="btn-edit"> Edit </button> </div> <div> <button class="btn-delete"> Delete </button> </div> <div> <input type="checkbox" class="check" </div>`;
+    myLi.innerHTML = `<div class="task-test"> ${inputValue} </div> <div> <button class="btn-edit"> 🖉 </button> </div> <div> <button class="btn-delete"> ❌ </button> </div> <div> <input type="checkbox" class="check" </div>`;
     toDoList.appendChild(myLi);
     saveToLocal();
     // allLiItems = document.querySelectorAll("li");
@@ -48,6 +48,17 @@ addTask.addEventListener("click", (e) => {
     toDoInput.value = "";
     editMode = false;
   }
+}
+
+toDoInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    addingTask();
+  }
+});
+
+addTask.addEventListener("click", (e) => {
+  e.preventDefault();
+  addingTask();
 });
 
 toDoList.addEventListener("click", (e) => {
@@ -147,7 +158,7 @@ function loadFromLocal() {
       let myLi = document.createElement("li");
       myLi.className = "listItem";
       myLi.dataset.id = `${item.id}`;
-      myLi.innerHTML = `<div class="task-test"> ${item.task} </div> <div> <button class="btn-edit"> Edit </button> </div> <div> <button class="btn-delete"> Delete </button> </div> <div> <input type="checkbox" class="check" </div>`;
+      myLi.innerHTML = `<div class="task-test"> ${item.task} </div> <div> <button class="btn-edit"> 🖉 </button> </div> <div> <button class="btn-delete"> ❌ </button> </div> <div> <input type="checkbox" class="check" </div>`;
       toDoList.appendChild(myLi);
       if (item.done === true) {
         myLi.classList.add("completed");
@@ -156,3 +167,8 @@ function loadFromLocal() {
     });
   }
 }
+
+clearLocalStorage.addEventListener("click", (e) => {
+  localStorage.clear();
+  window.location.reload();
+});
