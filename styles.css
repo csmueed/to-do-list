@@ -135,3 +135,6 @@ li.completed {
 .filter-btn {
   width: 100%;
 }
+.active {
+  background-color: #34007c;
+}
