@@ -197,3 +197,6 @@ li.completed {
   color: black;
   font-weight: bold;
 }
+#clear:hover {
+  background-color: #8c7b09;
+}
